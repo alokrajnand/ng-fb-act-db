@@ -1,0 +1,228 @@
+@media only screen and (min-width: 300px) {
+  .banner-container {
+    padding: 0px !important;
+  }
+  .home-banner {
+    background-image: url(../../../assets/banner/banner-bg.jpg);
+  }
+
+  .home-container {
+    
+  }
+}
+@media only screen and (min-width: 400px) {
+}
+@media only screen and (min-width: 700px) {
+}
+@media only screen and (min-width: 1000px) {
+.banner-container {
+    width: 100%;
+    margin: 0em !important;
+    height: 400px;
+    background-size: cover;
+    background-position: center center;
+    background-image: url(../../../assets/banner/banner-bg.jpg);
+    border-radius: 0px ;
+    }
+
+.banner-home {
+        height: 400px;
+        color: red;
+        text-align: center;
+        background-color: rgba(247, 23, 23, 0.733);
+  }
+
+.banner-home-h1{
+  
+  color: white;
+  font-size: 50px;
+  padding-bottom:5px  ;
+  padding-top: 10%;
+}
+
+.banner-home-h3{
+  color: rgb(100, 4, 36);
+  font-size: 20px;
+}
+
+.home-card-container{
+  width:100%;
+  background-color:#f4f5fd;
+  padding-bottom: 50px;
+  padding-top: 50px;
+}
+
+.home-card-heading{
+  width:70%;
+  color:rgba(247, 23, 23);
+  text-align: center;
+  font-weight: 300;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  text-align: center;
+  margin: 0 auto;
+  margin-bottom: 50px;
+}
+
+.home-card-heading:before, .home-card-heading:after {
+    position: absolute;
+    top: 51%;
+    overflow: hidden;
+    width: 55%;
+    height: 2px;
+    content: '\a0';
+    background-color: red;
+}
+.home-card-heading:before {
+    margin-left: -58%;
+    text-align: right;
+}
+.home-card-heading::after {
+    margin-left: 25px;
+
+}
+
+.color {
+    background-color: #ccc;
+}
+
+
+.home-row{
+  width:85%;
+  margin: 0px auto;
+}
+
+
+.banner-card1{
+    width: 100%;
+    margin: 0em !important;
+    background-size: cover;
+    border-radius: 0px ;
+    background-color: #05668d;
+    color: white;
+    text-align: center;
+  }
+.banner-card-header{
+  font-size: 20px;
+  font-weight: 800;
+  margin-bottom: 2px;
+  margin-top: 15px;
+}
+
+.banner-card-para{
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.banner-card2{
+    width: 100%;
+    margin: 0em !important;
+    background-size: cover;
+    border-radius: 0px ;
+    background-color: #028090;
+        color: white;
+    text-align: center;
+  }
+
+.banner-card3{
+    width: 100%;
+    margin: 0em !important;
+    background-size: cover;
+    border-radius: 0px ;
+    background-color: #00a896;
+    color: white;
+    text-align: center;
+  }
+
+.banner-card4{
+    width: 100%;
+    margin: 0em !important;
+    background-size: cover;
+    border-radius: 0px ;
+    background-color: #02c39a;
+        color: white;
+    text-align: center;
+  }
+
+
+.about-card{
+    width: 100%;
+    margin: 0em !important;
+    height: 180px;
+    background-size: cover;
+    border-radius: 0px ;
+    background-color :white;
+  }
+
+.home-h1{
+  text-align: center;
+
+}
+
+
+.home-contact-container{
+  margin: 50px 0px;
+  background-color: #f4f5fd;
+}
+
+.contact-card{
+    width: 100%;
+    background-size: cover;
+    border-radius: 0px ;
+
+  }
+
+.contact-detail{
+ margin-left: 15%;
+ margin-top: 15%;
+}
+.contact-h1{
+  font-size: 25px;
+  font-weight: 700;
+  margin-bottom: 3px;
+  color: rgba(247, 23, 23);
+}
+.contact{
+  margin:10px;
+}
+.contact-header{
+  font-weight: bold;
+}
+.contact p{
+  margin: 0px;
+  font-size: 15px;
+}
+
+.showcase-container {
+    width: 125%;
+    margin: 0em !important;
+    height: 400px;
+    background-size: 100% 100%;
+    background-image: url(../../../assets/banner/showcase-img.jpg);
+    border-radius: 0px ;
+    }
+
+.client-card-container{
+  margin-bottom: 50px;
+}
+
+
+.partner-1{
+    width: 100%;
+    margin: 0em !important;
+    border-radius: 0px ;
+}
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
+.about-card{
+  padding:126px 6%;
+}
+
+}

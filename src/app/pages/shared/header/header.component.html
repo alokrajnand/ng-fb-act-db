@@ -1,0 +1,21 @@
+<mat-toolbar class="header" color="warn">
+  <mat-toolbar-row class="header-row">
+    <button  *ngIf="_AuthService.isLoggedIn()" class="header-icon-button" mat-icon-button color="test"(click)="toggleSideBar()">
+      <mat-icon>menu</mat-icon>
+    </button>
+
+   <span class="logo"><img src="/assets/logo/Actoss-logo-600.png"></span>
+    <span class="logo"> Actoss Technology Pvt Ltd </span>
+     
+
+    <div fxFlex fxLayout="row" fxLayoutAlign="flex-end">
+      <ul fxLayout="row" fxLayoutGap="20px">
+        <div class="header-button">
+          <button mat-stroked-button  routerLinkActive="list-item-active" *ngIf="!_AuthService.isLoggedIn()" routerLink="/signin"> Sign In </button>
+          <button mat-stroked-button  routerLinkActive="list-item-active" *ngIf="!_AuthService.isLoggedIn()" routerLink="/signup"> Sign Up </button>
+          <button mat-stroked-button  routerLinkActive="list-item-active" *ngIf="_AuthService.isLoggedIn()"(click)="_AuthService.SignOut()"> Sign Out </button>
+        </div>
+      </ul>
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>

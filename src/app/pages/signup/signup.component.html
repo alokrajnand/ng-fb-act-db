@@ -1,0 +1,44 @@
+
+<div class="auth-backgroud">
+<div class="auth-container">  
+<div class="auth-center-container">
+  <mat-toolbar><span>Sign up</span></mat-toolbar>
+  
+  <mat-card>
+
+    <mat-card-content>
+
+          <form class="signup-form" [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
+            
+            <mat-form-field class="signup-form-field">
+              <mat-label>Email Address</mat-label>
+              <input matInput placeholder="test@test.com" value="Email Address" formControlName="email_address">
+              <mat-hint> Email Address </mat-hint>
+              <mat-error *ngIf="email_address.errors?.required" >Email is required</mat-error>
+              <mat-error *ngIf="email_address.errors?.pattern"> Not a valid email</mat-error>  
+            </mat-form-field>
+
+            <mat-form-field class="signup-form-field">
+              <mat-label>Password</mat-label>
+              <input matInput placeholder="Password" value="Password" type ="password" formControlName="password">
+              <mat-hint> Password </mat-hint>
+              <mat-error *ngIf="password.errors?.required" >Password is Required</mat-error>
+            </mat-form-field>
+
+        <button class="signup-button" mat-raised-button color="primary" style="width: 100%; display: block;"
+        [disabled]="signUpForm.invalid"
+        >Submit</button> 
+      </form>
+            {{errorMsg}}
+    </mat-card-content>
+
+    <mat-divider></mat-divider>  
+    <div style="padding-top: 15px;"></div>
+    <button class="signup-button" mat-raised-button color="primary" style="width: 100%; display: block;" routerLink="/signin">All ready have account - Login</button> 
+    
+  </mat-card>
+</div>
+</div>
+</div>
+
+

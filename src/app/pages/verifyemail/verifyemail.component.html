@@ -1,0 +1,25 @@
+
+<div class="auth-backgroud">
+<div class="auth-container">  
+<div class="auth-center-container">
+  <mat-toolbar><span>Thank You for Registering</span></mat-toolbar>
+  
+  <mat-card>
+
+    <mat-card-content>
+      <div class="formGroup">
+        <p class="text-center">We have sent a confirmation email to <strong>{{user.email}}</strong>.</p>
+        <p class="text-center">Please check your email and click on the link to verfiy your email address.</p>
+      </div>
+    </mat-card-content>
+
+    <mat-divider></mat-divider>  
+    <div style="padding-top: 15px;"></div>
+    <button class="signup-button" mat-raised-button color="primary" style="width: 100%; display: block;" (click)="sendmail()">Resend Verification Email</button> 
+    <button class="signup-button" mat-raised-button color="primary" style="width: 100%; display: block;" routerLink="/signin">Go back to - Login</button> 
+    
+  </mat-card>
+</div>
+</div>
+</div>
+
