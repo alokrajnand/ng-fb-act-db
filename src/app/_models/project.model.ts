@@ -7,6 +7,6 @@ export class ProjectModel {
    project_description: string;
    project_name: string;
    project_status: string;
-   project_start_d: string;
-   project_end_d: string;
+   project_start_d: Date;
+   project_end_d: Date;
 }

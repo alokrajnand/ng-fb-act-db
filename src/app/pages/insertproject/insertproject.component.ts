@@ -2,6 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ProjectService } from 'src/app/_services/project.service';
 import { ProjectModel } from 'src/app/_models/project.model';
+import { toTypeScript } from '@angular/compiler';
+
+
+interface Food {
+  value: string;
+  viewValue: string;
+}
 
 @Component({
   selector: 'app-insertproject',
@@ -14,11 +21,19 @@ export class InsertprojectComponent implements OnInit {
 signInForm: FormGroup;
 project : ProjectModel = new ProjectModel();
 insertProjectForm: FormGroup;
+selectedValue: string;
 
   constructor(
   private _FormBuilder: FormBuilder,
   public _ProjectService: ProjectService
   ) {}
+
+foods: Food[] = [
+    {value: 'Running', viewValue: 'Running'},
+    {value: 'Pipe Line', viewValue: 'Pipe Line'},
+    {value: 'Closed', viewValue: 'Closed'}
+  ];
+
 
  ngOnInit(): void {
 
@@ -62,20 +77,22 @@ insertProjectForm: FormGroup;
 
 /*** Form Validation Ends Here */
 
-onSubmit() {
-  console.log(this.project_id.value, this.project_name.value );
+onSubmit1() {
+  console.log(this.project_id.value, this.project_name.value,
+  this.project_location.value, this.project_description.value ,
+  this.project_status.value, this.project_start_d.value, this.project_end_d.value,  );
 }
 
 
-  CreateRecord() {
+  onSubmit()  {
     let record = {};
-    record[this.project.project_id] = this.project_id.value;
-    record[this.project.project_name] = this.project_name.value;
-    record[this.project.project_location] = this.project_location.value;
-    record[this.project.project_description] = this.project_description.value;
-    record[this.project.project_status] = this.project_status.value;
-    record[this.project.project_start_d] = this.project_name.value;
-    record[this.project.project_end_d] = this.project_name.value;
+    record['project_id'] = this.project_id.value;
+    record['project_name'] = this.project_name.value;
+    record['project_location'] = this.project_location.value;
+    record['project_description'] = this.project_description.value;
+    record['project_status'] = this.project_status.value;
+    record['project_start_d'] = this.project_start_d.value;
+    record['project_end_d'] = this.project_end_d.value;
     this._ProjectService.create_Project(record).then(resp => {
       console.log(resp);
     })

@@ -4,62 +4,52 @@
             <mat-form-field class="example-full-width" appearance="outline">
               <mat-label>Project ID</mat-label>
               <input matInput placeholder="Project Id" value="Project Id" formControlName="project_id" required>
-              <mat-hint>Project ID</mat-hint>
             
             </mat-form-field>
 
             <mat-form-field class="example-full-width" appearance="outline">
               <mat-label>Project Name</mat-label>
               <input matInput placeholder="Project Name" value="Project Name" formControlName="project_name" required>
-              <mat-hint>Project Name</mat-hint>
               
             </mat-form-field>
  
 
             <mat-form-field class="example-full-width" appearance="outline">
-              <mat-label>Project ID</mat-label>
-              <input matInput placeholder="Project Id" value="Project Id" formControlName="project_id" required>
-              <mat-hint>Project ID</mat-hint>
+              <mat-label>Project Location</mat-label>
+              <input matInput placeholder="Project Location" value="Project Location" formControlName="project_location" required>
             
             </mat-form-field>
 
             <mat-form-field class="example-full-width" appearance="outline">
-              <mat-label>Project Name</mat-label>
-              <input matInput placeholder="Project Name" value="Project Name" formControlName="project_name" required>
-              <mat-hint>Project Name</mat-hint>
-              
+              <mat-label>Project Description</mat-label>
+              <input matInput placeholder="Project Description" value="Project Description" formControlName="project_description" required>
             </mat-form-field>
- 
-             <mat-form-field class="example-full-width" appearance="outline">
-              <mat-label>Project ID</mat-label>
-              <input matInput placeholder="Project Id" value="Project Id" formControlName="project_id" required>
-              <mat-hint>Project ID</mat-hint>
+
+
+              <mat-form-field appearance="fill" style="margin-right:15px">
+                <mat-label>Project Status</mat-label>
+                <mat-select formControlName="project_status" placeholder="Favorite food"  required>
+                  <mat-option *ngFor="let food of foods" [value]="food.value">
+                    {{food.viewValue}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
             
+            <mat-form-field color="accent" appearance="fill" style="margin-right:15px">
+                <mat-label>Project Start Data</mat-label>
+                <input matInput formControlName="project_start_d" [matDatepicker]="picker1" required>
+                <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                <mat-datepicker #picker1></mat-datepicker>
             </mat-form-field>
 
-            <mat-form-field class="example-full-width" appearance="outline">
-              <mat-label>Project Name</mat-label>
-              <input matInput placeholder="Project Name" value="Project Name" formControlName="project_name" required>
-              <mat-hint>Project Name</mat-hint>
-              
-            </mat-form-field>
- 
 
-            <mat-form-field class="example-full-width" appearance="outline">
-              <mat-label>Project ID</mat-label>
-              <input matInput placeholder="Project Id" value="Project Id" formControlName="project_id" required>
-              <mat-hint>Project ID</mat-hint>
-            
-            </mat-form-field>
 
-            <mat-form-field class="example-full-width" appearance="outline">
-              <mat-label>Project Name</mat-label>
-              <input matInput placeholder="Project Name" value="Project Name" formControlName="project_name" required>
-              <mat-hint>Project Name</mat-hint>
-              
+            <mat-form-field color="accent" appearance="fill" style="margin-right:15px">
+                <mat-label>Project End Date</mat-label>
+                <input matInput formControlName="project_end_d" [matDatepicker]="picker2" >
+                <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                <mat-datepicker #picker2></mat-datepicker>
             </mat-form-field>
- 
-
 
 
             <button class="signin-button" mat-raised-button color="accent" style="width: 100%; display: block;" [disabled]="insertProjectForm.invalid" >Submit</button>        

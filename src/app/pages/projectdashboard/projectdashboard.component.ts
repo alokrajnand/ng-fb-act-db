@@ -7,26 +7,10 @@ import { map } from 'rxjs/operators';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig , MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { InsertprojectComponent } from '../insertproject/insertproject.component';
 import { EditprojectComponent } from '../editproject/editproject.component';
 
-export interface UserData {
-  id: string;
-  user: string;
-  progress: string;
-  color: string;
-}
-
-/** Constants used to fill up our data base. */
-const COLORS: string[] = [
-  'maroon', 'red', 'orange', 'yellow', 'olive', 'green', 'purple', 'fuchsia', 'lime', 'teal',
-  'aqua', 'blue', 'navy', 'black', 'gray'
-];
-const USER: string[] = [
-  'Maia', 'Asher', 'Olivia', 'Atticus', 'Amelia', 'Jack', 'Charlotte', 'Theodore', 'Isla', 'Oliver',
-  'Isabella', 'Jasper', 'Cora', 'Levi', 'Violet', 'Arthur', 'Mia', 'Thomas', 'Elizabeth'
-];
 
 @Component({
   selector: 'app-projectdashboard',
@@ -36,13 +20,11 @@ const USER: string[] = [
 export class ProjectdashboardComponent implements OnInit {
 title = 'Firestore CRUD Operations Students App';
 
-  students: any;
-  studentName: string;
-  studentAge: number;
-  studentAddress: string;
+  project_data: any;
 
-  displayedColumns: string[] = ['id', 'user', 'progress', 'color' , 'actions'];
-  dataSource: MatTableDataSource<UserData>;
+
+  displayedColumns: string[] = ['project_id', 'project_name', 'project_location', 'project_status', 'actions'];
+  dataSource: MatTableDataSource<ProjectModel>;
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
@@ -52,17 +34,7 @@ title = 'Firestore CRUD Operations Students App';
     private _ProjectService : ProjectService,
     public dialog: MatDialog
   ) { 
-
-
-
-    // Create 100 users
-    const users = Array.from({length: 100}, (_, k) => createNewUser(k + 1));
-
-    // Assign the data to the data source for the table to render
-    this.dataSource = new MatTableDataSource(users);
   }
-
-
 
 
  openInsertprojectDialog(): void {
@@ -73,12 +45,23 @@ title = 'Firestore CRUD Operations Students App';
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
       
+      
     });
   }
 
- openEditprojectDialog(): void {
+ openEditprojectDialog(pi): void {
     const dialogRef = this.dialog.open(EditprojectComponent, {
       width: '80%',
+      data: {
+          project_uid: pi.id,
+          project_id: pi.project_id,
+          project_name: pi.project_name,
+          project_location: pi.project_location,
+          project_description:pi.project_description,
+          project_status: pi.project_status,
+          project_start_d: pi.project_start_d.toDate(),
+          project_end_d: pi.project_end_d.toDate(),       
+        }
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -92,19 +75,24 @@ title = 'Firestore CRUD Operations Students App';
 
   ngOnInit(): void  {
     this._ProjectService.read_project().subscribe(data => {
-
-      this.students = data.map(e => {
+      this.project_data = data.map(e => {
         return {
-          userName: e.payload.doc.data()['project_id'],
-          Age: e.payload.doc.data()['project_name'],
+          project_uid: e.payload.doc.id,
+          project_id: e.payload.doc.data()['project_id'],
+          project_name: e.payload.doc.data()['project_name'],
+          project_location: e.payload.doc.data()['project_location'],
+          project_description: e.payload.doc.data()['project_description'],
+          project_status: e.payload.doc.data()['project_status'],
+          project_start_d: e.payload.doc.data()['project_start_d'],
+          project_end_d: e.payload.doc.data()['project_end_d'],
         };
       })
-      console.log(this.students);
+      this.dataSource = new MatTableDataSource(this.project_data);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+      console.log(this.project_data);
 
     });
-
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
   }
 
 
@@ -112,28 +100,18 @@ title = 'Firestore CRUD Operations Students App';
 
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
-
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
   }
 }
 
-/** Builds and returns a new User. */
-function createNewUser(id: number): UserData {
-  const user = USER[Math.round(Math.random() * (USER.length - 1))] + ' ' +
-      USER[Math.round(Math.random() * (USER.length - 1))].charAt(0) + '.';
 
-  return {
-    id: id.toString(),
-    user: user,
-    progress: Math.round(Math.random() * 100).toString(),
-    color: COLORS[Math.round(Math.random() * (COLORS.length - 1))]
-  };
 
 
 /** open material dialoge for the project insert */
 
 
 
-}
+
+
