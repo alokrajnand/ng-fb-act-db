@@ -14,7 +14,7 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { environment } from '../environments/environment';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
-import { EditprojectComponent } from './pages/editproject/editproject.component';
+
 
 
 

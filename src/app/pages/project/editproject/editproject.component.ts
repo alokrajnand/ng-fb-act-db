@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { ProjectModel } from 'src/app/_models/project.model';
 import { ProjectService } from 'src/app/_services/project.service';
 
@@ -23,6 +24,8 @@ insertProjectForm: FormGroup;
 selectedValue: string;
 
   constructor(
+  private _Router: Router,
+  public dialog: MatDialog,
   private _FormBuilder: FormBuilder,
   public _ProjectService: ProjectService,
   @Inject(MAT_DIALOG_DATA) public data: any,
@@ -43,7 +46,7 @@ foods: Food[] = [
 /*** Form Validation starts Here */
 
     this.insertProjectForm = this._FormBuilder.group({
-      project_id: [this.data.project_id,Validators.required,],
+      project_id: [{ value: this.data.project_id, disabled:true},Validators.required,],
       project_name: [this.data.project_name, Validators.required],
       project_location: [this.data.project_location, Validators.required],
       project_description: [this.data.project_description, Validators.required],
@@ -54,7 +57,7 @@ foods: Food[] = [
   }
   // this is for the vialidation and showing error massage
   get project_id(): any {
-    return this.insertProjectForm.get("project_id").setValue(this.data.id);
+    return this.insertProjectForm.get("project_id");
   }
   get project_name(): any {
     return this.insertProjectForm.get("project_name");
@@ -80,14 +83,14 @@ foods: Food[] = [
 
 /*** Form Validation Ends Here */
 
-onSubmit() {
+onSubmit1() {
   console.log(this.project_id.value, this.project_name.value,
   this.project_location.value, this.project_description.value ,
   this.project_status.value, this.project_start_d.value, this.project_end_d.value,  );
 }
 
 
-  onSubmit1()  {
+  onSubmit()  {
     let record = {};
     record['project_id'] = this.project_id.value;
     record['project_name'] = this.project_name.value;
@@ -96,8 +99,9 @@ onSubmit() {
     record['project_status'] = this.project_status.value;
     record['project_start_d'] = this.project_start_d.value;
     record['project_end_d'] = this.project_end_d.value;
-    this._ProjectService.create_Project(record).then(resp => {
-      console.log(resp);
+    this._ProjectService.update_Project(this.data.project_uid,record).then(resp => {
+      console.log('resp');
+      this.dialog.closeAll();
     })
       .catch(error => {
         console.log(error);

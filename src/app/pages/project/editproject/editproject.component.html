@@ -1,9 +1,9 @@
-<h2 mat-dialog-title>Install Angular</h2>
+<h2 mat-dialog-title>{{data.project_uid}}</h2>
 <mat-dialog-content class="mat-typography">
-       <form class=""  [formGroup]="insertProjectForm" (ngSubmit)="onSubmit()" >
+       <form class=""  [formGroup]="insertProjectForm"  >
             <mat-form-field class="example-full-width" appearance="outline">
               <mat-label>Project ID</mat-label>
-              <input matInput placeholder="Project Id" value="Project Id" formControlName="project_id" required>
+              <input matInput placeholder="Project Id" va formControlName="project_id" >
             
             </mat-form-field>
 
@@ -52,12 +52,11 @@
             </mat-form-field>
 
 
-            <button class="signin-button" mat-raised-button color="accent" style="width: 100%; display: block;" [disabled]="insertProjectForm.invalid" >Submit</button>        
         </form>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
   <button mat-button mat-dialog-close>Cancel</button>
-  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Install</button>
+  <button mat-button color="accent"  [disabled]="insertProjectForm.invalid" (click)="onSubmit()">Submit</button>  
 </mat-dialog-actions>
 
 

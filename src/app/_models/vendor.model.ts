@@ -1,5 +1,5 @@
 
-export interface LinkModel {
+export interface VendorModel {
     uid :  string;
     project_id : string;
     link_id : string;

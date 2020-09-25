@@ -1,30 +1,27 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ProjectService } from 'src/app/_services/project.service';
-import { AngularFirestore , AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
-import { ProjectModel } from 'src/app/_models/project.model';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { MatDialog, MatDialogConfig , MAT_DIALOG_DATA} from '@angular/material/dialog';
-import { InsertprojectComponent } from '../insertproject/insertproject.component';
-import { EditprojectComponent } from '../editproject/editproject.component';
-
+import { VendorModel } from 'src/app/_models/vendor.model';
+import { ProjectService } from 'src/app/_services/project.service';
+import { EditvendorComponent } from '../editvendor/editvendor.component';
+import { InservendorComponent } from '../inservendor/inservendor.component';
 
 @Component({
-  selector: 'app-projectdashboard',
-  templateUrl: './projectdashboard.component.html',
-  styleUrls: ['./projectdashboard.component.scss']
+  selector: 'app-vendordashboard',
+  templateUrl: './vendordashboard.component.html',
+  styleUrls: ['./vendordashboard.component.scss']
 })
-export class ProjectdashboardComponent implements OnInit {
-title = 'Firestore CRUD Operations Students App';
+export class VendordashboardComponent implements OnInit {
 
+ 
   project_data: any;
 
 
   displayedColumns: string[] = ['project_id', 'project_name', 'project_location', 'project_status', 'actions'];
-  dataSource: MatTableDataSource<ProjectModel>;
+  dataSource: MatTableDataSource<VendorModel>;
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
@@ -38,7 +35,7 @@ title = 'Firestore CRUD Operations Students App';
 
 
  openInsertprojectDialog(): void {
-    const dialogRef = this.dialog.open(InsertprojectComponent, {
+    const dialogRef = this.dialog.open(InservendorComponent, {
       width: '80%',
     });
 
@@ -50,10 +47,11 @@ title = 'Firestore CRUD Operations Students App';
   }
 
  openEditprojectDialog(pi): void {
-    const dialogRef = this.dialog.open(EditprojectComponent, {
+    const dialogRef = this.dialog.open(EditvendorComponent, {
       width: '80%',
+      closeOnNavigation: true,
       data: {
-          project_uid: pi.id,
+          project_uid: pi.project_uid,
           project_id: pi.project_id,
           project_name: pi.project_name,
           project_location: pi.project_location,
@@ -62,6 +60,7 @@ title = 'Firestore CRUD Operations Students App';
           project_start_d: pi.project_start_d.toDate(),
           project_end_d: pi.project_end_d.toDate(),       
         }
+        
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -104,6 +103,15 @@ title = 'Firestore CRUD Operations Students App';
       this.dataSource.paginator.firstPage();
     }
   }
+
+
+
+  RemoveRecord(rowID) {
+    this._ProjectService.delete_Project(rowID);
+  }
+
+
+
 }
 
 

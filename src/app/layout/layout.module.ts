@@ -11,7 +11,15 @@ import { FooterComponent } from "../pages/shared/footer/footer.component";
 import { SidebarComponent } from "../pages/shared/sidebar/sidebar.component";
 import { SignupComponent } from "../pages/signup/signup.component";
 import { HomeComponent } from "../pages/home/home.component";
-import { ProjectdashboardComponent } from '../pages/projectdashboard/projectdashboard.component';
+import { ProjectdashboardComponent } from '../pages/project/projectdashboard/projectdashboard.component';
+import { InsertprojectComponent } from '../pages/project/insertproject/insertproject.component';
+import { LinkdashboardComponent } from '../pages/link/linkdashboard/linkdashboard.component';
+import { EditprojectComponent } from '../pages/project/editproject/editproject.component';
+import { EditlinkComponent } from '../pages/link/editlink/editlink.component';
+import { InserlinkComponent } from '../pages/link/inserlink/inserlink.component';
+import { VendordashboardComponent } from '../pages/vendor/vendordashboard/vendordashboard.component';
+import { InservendorComponent } from '../pages/vendor/inservendor/inservendor.component';
+import { EditvendorComponent } from '../pages/vendor/editvendor/editvendor.component';
 
 /****************************************
  * Progress Bar
@@ -59,9 +67,8 @@ import {MatTableModule} from '@angular/material/table';
 
 
 import { GoogleMapsModule } from "@angular/google-maps";
-import { InsertprojectComponent } from '../pages/insertproject/insertproject.component';
-import { LinkdashboardComponent } from '../pages/linkdashboard/linkdashboard.component';
-import { EditprojectComponent } from '../pages/editproject/editproject.component';
+
+
 
 
 @NgModule({
@@ -80,6 +87,11 @@ import { EditprojectComponent } from '../pages/editproject/editproject.component
     InsertprojectComponent,
     LinkdashboardComponent,
     EditprojectComponent,
+    EditlinkComponent, 
+    InserlinkComponent, 
+    VendordashboardComponent, 
+    InservendorComponent, 
+    EditvendorComponent
   ],
   imports: [
     CommonModule,

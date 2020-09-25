@@ -6,26 +6,26 @@ import { AngularFirestore } from '@angular/fire/firestore';
 @Injectable({
   providedIn: 'root'
 })
-export class ProjectService {
+export class VendorService {
 
   constructor(
     private _HttpClient: HttpClient,
     private _AngularFirestore : AngularFirestore
   ) { }
 
-create_Project(record) {
-    return this._AngularFirestore.collection('projects').add(record);
+create_vendor(record) {
+    return this._AngularFirestore.collection('vendors').add(record);
   }
 
-read_project() {
+read_vendor() {
     return this._AngularFirestore.collection('projects').snapshotChanges();
   }
 
-update_Project(recordID,record){
+update_vendor(recordID,record){
     return this._AngularFirestore.doc('projects/' + recordID).update(record);
   }
 
-delete_Project(record_id) {
+delete_vendor(record_id) {
     this._AngularFirestore.doc('projects/' + record_id).delete();
   }
 
