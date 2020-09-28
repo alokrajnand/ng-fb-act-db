@@ -67,26 +67,28 @@
 
     <!-- ID Column -->
     <ng-container matColumnDef="project_id">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Project ID </th>
       <td mat-cell *matCellDef="let row"> {{row.project_id}} </td>
     </ng-container>
 
     <!-- Progress Column -->
-    <ng-container matColumnDef="project_name">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
-      <td mat-cell *matCellDef="let row"> {{row.project_name}}</td>
+    <ng-container matColumnDef="link_id">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Link ID </th>
+      <td mat-cell *matCellDef="let row" > 
+      <a routerLink="/link/{{row.link_uid}}">{{row.link_id}} </a>
+      </td>
     </ng-container>
 
     <!-- Name Column -->
-    <ng-container matColumnDef="project_location">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Location </th>
-      <td mat-cell *matCellDef="let row"> {{row.project_location}} </td>
+    <ng-container matColumnDef="link_start_point">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Link Start Point </th>
+      <td mat-cell *matCellDef="let row"> {{row.link_start_point}} </td>
     </ng-container>
 
     <!-- Name Column -->
-    <ng-container matColumnDef="project_status">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Location </th>
-      <td mat-cell *matCellDef="let row"> {{row.project_status}} </td>
+    <ng-container matColumnDef="link_end_point">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Link End Point </th>
+      <td mat-cell *matCellDef="let row"> {{row.link_end_point}} </td>
     </ng-container>
 
 

@@ -6,6 +6,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { VendorModel } from 'src/app/_models/vendor.model';
 import { ProjectService } from 'src/app/_services/project.service';
+import { VendorService } from 'src/app/_services/vendor.service';
 import { EditvendorComponent } from '../editvendor/editvendor.component';
 import { InservendorComponent } from '../inservendor/inservendor.component';
 
@@ -17,10 +18,10 @@ import { InservendorComponent } from '../inservendor/inservendor.component';
 export class VendordashboardComponent implements OnInit {
 
  
-  project_data: any;
+  vendor_data: any;
 
 
-  displayedColumns: string[] = ['project_id', 'project_name', 'project_location', 'project_status', 'actions'];
+  displayedColumns: string[] = ['vendor_id', 'vendor_name', 'vendor_city', 'vendor_state', 'actions'];
   dataSource: MatTableDataSource<VendorModel>;
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
@@ -28,7 +29,7 @@ export class VendordashboardComponent implements OnInit {
 
   constructor( 
     private _AngularFirestore : AngularFirestore,
-    private _ProjectService : ProjectService,
+    private _VendortService : VendorService,
     public dialog: MatDialog
   ) { 
   }
@@ -51,14 +52,14 @@ export class VendordashboardComponent implements OnInit {
       width: '80%',
       closeOnNavigation: true,
       data: {
-          project_uid: pi.project_uid,
-          project_id: pi.project_id,
-          project_name: pi.project_name,
-          project_location: pi.project_location,
-          project_description:pi.project_description,
-          project_status: pi.project_status,
-          project_start_d: pi.project_start_d.toDate(),
-          project_end_d: pi.project_end_d.toDate(),       
+
+          vendor_uid :  pi.vendor_uid,
+          vendor_id : pi.vendor_id,
+          vendor_name : pi.vendor_name,
+          vendor_city : pi.vendor_city,
+          vendor_state : pi.vendor_state,
+          vendor_pincode : pi.vendor_pincode,
+          vendor_country : pi.vendor_country,         
         }
         
     });
@@ -73,23 +74,20 @@ export class VendordashboardComponent implements OnInit {
 
 
   ngOnInit(): void  {
-    this._ProjectService.read_project().subscribe(data => {
-      this.project_data = data.map(e => {
-        return {
-          project_uid: e.payload.doc.id,
-          project_id: e.payload.doc.data()['project_id'],
-          project_name: e.payload.doc.data()['project_name'],
-          project_location: e.payload.doc.data()['project_location'],
-          project_description: e.payload.doc.data()['project_description'],
-          project_status: e.payload.doc.data()['project_status'],
-          project_start_d: e.payload.doc.data()['project_start_d'],
-          project_end_d: e.payload.doc.data()['project_end_d'],
+    this._VendortService.read_vendor().subscribe(data => {
+      this.vendor_data = data.map(e => {
+        return  {
+          vendor_uid :  e.payload.doc.id,
+          vendor_id : e.payload.doc.data()['vendor_id'],
+          vendor_name : e.payload.doc.data()['vendor_name'],
+          Address : e.payload.doc.data()['Address'],
+
         };
       })
-      this.dataSource = new MatTableDataSource(this.project_data);
+      this.dataSource = new MatTableDataSource(this.vendor_data);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
-      console.log(this.project_data);
+      console.log(this.vendor_data);
 
     });
   }
@@ -107,7 +105,7 @@ export class VendordashboardComponent implements OnInit {
 
 
   RemoveRecord(rowID) {
-    this._ProjectService.delete_Project(rowID);
+    this._VendortService.delete_vendor(rowID);
   }
 
 

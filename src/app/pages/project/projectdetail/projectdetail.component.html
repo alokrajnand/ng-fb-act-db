@@ -1,0 +1,24 @@
+<mat-toolbar>
+  <mat-toolbar-row class="header-row">
+  <mat-icon>line_style</mat-icon>{{project_data.project_id}}
+    <div fxFlex fxLayout="row" fxLayoutAlign="flex-end">
+      <ul fxLayout="row" fxLayoutGap="20px">
+        <div class="header-button">
+        </div>
+      </ul>
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>
+<mat-tab-group mat-align-tabs="start" >
+  <mat-tab label="Project Detail">Content 1</mat-tab>
+  <mat-tab label="Link">
+  
+    <div *ngFor="let item of link_data">
+            {{item.link_uid}}
+
+    </div>
+
+  
+  </mat-tab>
+  
+</mat-tab-group>

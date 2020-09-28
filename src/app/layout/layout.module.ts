@@ -20,6 +20,9 @@ import { InserlinkComponent } from '../pages/link/inserlink/inserlink.component'
 import { VendordashboardComponent } from '../pages/vendor/vendordashboard/vendordashboard.component';
 import { InservendorComponent } from '../pages/vendor/inservendor/inservendor.component';
 import { EditvendorComponent } from '../pages/vendor/editvendor/editvendor.component';
+import { ProjectdetailComponent } from '../pages/project/projectdetail/projectdetail.component';
+import { LinkdetailComponent } from '../pages/link/linkdetail/linkdetail.component';
+import { VendordetailComponent } from '../pages/vendor/vendordetail/vendordetail.component';
 
 /****************************************
  * Progress Bar
@@ -67,6 +70,8 @@ import {MatTableModule} from '@angular/material/table';
 
 
 import { GoogleMapsModule } from "@angular/google-maps";
+import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
+
 
 
 
@@ -91,7 +96,10 @@ import { GoogleMapsModule } from "@angular/google-maps";
     InserlinkComponent, 
     VendordashboardComponent, 
     InservendorComponent, 
-    EditvendorComponent
+    EditvendorComponent,
+    ProjectdetailComponent,
+    LinkdetailComponent,
+    VendordetailComponent
   ],
   imports: [
     CommonModule,
@@ -120,6 +128,8 @@ import { GoogleMapsModule } from "@angular/google-maps";
     MatNativeDateModule,
     MatMenuModule,
     MatTableModule,
+    BrowserAnimationsModule,
+    NoopAnimationsModule,
     /**Flex layout */
     FlexLayoutModule,
     FormsModule,

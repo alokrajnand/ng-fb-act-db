@@ -1,1 +1,113 @@
-<p>inserlink works!</p>
+<h2 mat-dialog-title>Install Angular</h2>
+<mat-dialog-content class="mat-typography">
+       <form class=""  [formGroup]="insertLinkForm"  >
+            
+            <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Project ID</mat-label>
+                <mat-select formControlName="project_id" placeholder="Project ID"  required>
+                  <mat-option *ngFor="let project of project_data" [value]="project.project_id">
+                    {{project.project_id}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+
+
+
+            <mat-form-field class="example-full-width" appearance="outline">
+              <mat-label>Link ID</mat-label>
+              <input matInput placeholder="Link ID" value="Link ID" formControlName="link_id" required>            
+            </mat-form-field>
+ 
+
+            <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Link Assigned To</mat-label>
+                <mat-select formControlName="link_assigned_to" placeholder="Link Assigned To"  required>
+                  <mat-option *ngFor="let assigned of assignedto" [value]="assigned.value">
+                    {{assigned.viewValue}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+
+            <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Vendor ID </mat-label>
+                <mat-select formControlName="vendor_id" placeholder="Link Assigned To"  required>
+                <mat-option value="No Vendor">No Vendor</mat-option>
+                  <mat-option *ngFor="let vendor of vendor_data" [value]="vendor.vendor_id">{{vendor.vendor_id}}</mat-option>             
+                </mat-select>
+                <mat-hint>Assigned Vendor ID if link is not Self if self then choose No vendor</mat-hint>
+              </mat-form-field>
+            
+            <div style="margin-top:15px"></div>
+
+            <mat-form-field class="example-full-width" appearance="outline">
+              <mat-label>Link Start Point</mat-label>
+              <input matInput placeholder="Link Start Point" value="Link Start Point" formControlName="link_start_point" required>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width" appearance="outline">
+              <mat-label>Link End Point</mat-label>
+              <input matInput placeholder="Link End Point" value="Link End Point" formControlName="link_end_point" required>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width" appearance="outline">
+              <mat-label>Link Description</mat-label>
+              <input matInput placeholder="Link Description" value="Link Description" formControlName="link_desctiprion" required>
+            </mat-form-field>
+
+            <mat-form-field color="accent" appearance="fill" style="margin-right:15px">
+                <mat-label>Link Start Date</mat-label>
+                <input matInput formControlName="Link_start_date" [matDatepicker]="picker1" >
+                <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                <mat-datepicker #picker1></mat-datepicker>
+            </mat-form-field>
+
+            <mat-form-field color="accent" appearance="fill" style="margin-right:15px">
+                <mat-label>Link Completion Date</mat-label>
+                <input matInput formControlName="Link_complete_date" [matDatepicker]="picker2" >
+                <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                <mat-datepicker #picker2></mat-datepicker>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width" appearance="outline">
+              <mat-label>Link Vendor Length in KM</mat-label>
+              <input matInput placeholder="Link Vendor Length in KM" value="Link Vendor Length in KM" formControlName="link_vendor_length" required>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width" appearance="outline">
+              <mat-label>Link Official Length in KM</mat-label>
+              <input matInput placeholder="Link Official Length in KM" value="Link Official Length in KM" formControlName="link_offical_length" required>
+            </mat-form-field>
+
+            <mat-form-field color="accent" appearance="fill" style="margin-right:15px">
+                <mat-label>Link offical billing start Date</mat-label>
+                <input matInput formControlName="link_official_billing_start_d" [matDatepicker]="picker3" >
+                <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+                <mat-datepicker #picker3></mat-datepicker>
+            </mat-form-field>
+
+            <mat-form-field color="accent" appearance="fill" style="margin-right:15px">
+                <mat-label>Link Vendor Billing Start Date</mat-label>
+                <input matInput formControlName="link_vendor_billing_start_d" [matDatepicker]="picker4" >
+                <mat-datepicker-toggle matSuffix [for]="picker4"></mat-datepicker-toggle>
+                <mat-datepicker #picker4></mat-datepicker>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width" appearance="outline">
+              <mat-label>Link Comment</mat-label>
+              <input matInput placeholder="Link Comment" value="Link Comment" formControlName="link_comment" required>
+            </mat-form-field>
+
+
+        </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button  mat-button color="accent" (click)="onSubmit()" [disabled]="insertLinkForm.invalid" >Submit</button>        
+
+</mat-dialog-actions>
+
+
+
+
+
+

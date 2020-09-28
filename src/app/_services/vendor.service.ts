@@ -18,15 +18,15 @@ create_vendor(record) {
   }
 
 read_vendor() {
-    return this._AngularFirestore.collection('projects').snapshotChanges();
+    return this._AngularFirestore.collection('vendors').snapshotChanges();
   }
 
 update_vendor(recordID,record){
-    return this._AngularFirestore.doc('projects/' + recordID).update(record);
+    return this._AngularFirestore.doc('vendors/' + recordID).update(record);
   }
 
 delete_vendor(record_id) {
-    this._AngularFirestore.doc('projects/' + record_id).delete();
+    this._AngularFirestore.doc('vendors/' + record_id).delete();
   }
 
 }

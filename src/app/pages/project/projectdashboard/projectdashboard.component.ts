@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { ProjectService } from 'src/app/_services/project.service';
 import { AngularFirestore , AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { ProjectModel } from 'src/app/_models/project.model';
@@ -18,17 +18,18 @@ import { EditprojectComponent } from '../editproject/editproject.component';
   templateUrl: './projectdashboard.component.html',
   styleUrls: ['./projectdashboard.component.scss']
 })
-export class ProjectdashboardComponent implements OnInit {
+export class ProjectdashboardComponent implements OnInit  {
 title = 'Firestore CRUD Operations Students App';
 
   project_data: any;
 
 
-  displayedColumns: string[] = ['project_id', 'project_name', 'project_location', 'project_status', 'actions'];
+  displayedColumns: string[] = ['project_id', 'project_estimated_cost', 'project_manager', 'project_status', 'actions'];
   dataSource: MatTableDataSource<ProjectModel>;
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
+
 
   constructor( 
     private _AngularFirestore : AngularFirestore,
@@ -74,18 +75,20 @@ title = 'Firestore CRUD Operations Students App';
   }
 
 
-
-
   ngOnInit(): void  {
     this._ProjectService.read_project().subscribe(data => {
       this.project_data = data.map(e => {
-        return {
+        return  {
           project_uid: e.payload.doc.id,
           project_id: e.payload.doc.data()['project_id'],
           project_name: e.payload.doc.data()['project_name'],
           project_location: e.payload.doc.data()['project_location'],
           project_description: e.payload.doc.data()['project_description'],
+          project_short_description:e.payload.doc.data()['project_short_description'],
           project_status: e.payload.doc.data()['project_status'],
+          project_estimated_cost : e.payload.doc.data()['project_estimated_cost'],
+          project_owner : e.payload.doc.data()['project_owner'],
+          project_manager : e.payload.doc.data()['project_manager'],
           project_start_d: e.payload.doc.data()['project_start_d'],
           project_end_d: e.payload.doc.data()['project_end_d'],
         };
@@ -111,12 +114,17 @@ title = 'Firestore CRUD Operations Students App';
 
 
   RemoveRecord(rowID) {
-    this._ProjectService.delete_Project(rowID);
+    this._ProjectService.delete_Project(rowID).then(resp => {
+      console.log(resp);
+    })
+      .catch(error => {
+        console.log(error);
+      });
+  };
   }
 
 
 
-}
 
 
 

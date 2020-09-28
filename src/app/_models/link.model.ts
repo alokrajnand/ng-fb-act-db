@@ -1,19 +1,19 @@
 
-export interface LinkModel {
-    uid :  string;
+export class LinkModel {
+    link_uid :  string;
     project_id : string;
+    vendor_id : String;
     link_id : string;
-    assigned_to : string;
-    start_point : string;
-    end_point : string;
-    description : string;
-    link_complition_date : string;
-    length_of_vendor : string;
-    official_length :  string;
-    official_billing_status : string;
-    billing_start_date : string;
-    billing_start_date_reason : string;
-    vendor_billing_status : string;
-    vendor_billing_start_date : string;
-    vendor_billing_start_reason : string;
+    link_assigned_to : string;
+    link_start_point : string;
+    link_end_point : string;
+    link_desctiprion: String;
+    Link_start_date: Date;
+    Link_complete_date: Date;
+    link_vendor_length: Number;
+    link_offical_length: Number;
+    link_official_billing_start_d : Date;
+    link_vendor_billing_start_d : Date;
+    link_comment:String;
 }
+

@@ -19,7 +19,7 @@ export class LinkdashboardComponent implements OnInit {
   project_data: any;
 
 
-  displayedColumns: string[] = ['project_id', 'project_name', 'project_location', 'project_status', 'actions'];
+  displayedColumns: string[] = [ 'link_id','project_id', 'link_start_point', 'link_end_point', 'actions'];
   dataSource: MatTableDataSource<LinkModel>;
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
@@ -50,14 +50,20 @@ export class LinkdashboardComponent implements OnInit {
       width: '80%',
       closeOnNavigation: true,
       data: {
-          project_uid: pi.project_uid,
+          link_uid: pi.project_uid,
           project_id: pi.project_id,
-          project_name: pi.project_name,
-          project_location: pi.project_location,
-          project_description:pi.project_description,
-          project_status: pi.project_status,
-          project_start_d: pi.project_start_d.toDate(),
-          project_end_d: pi.project_end_d.toDate(),       
+          link_id: pi.link_id,
+          vendor_id: pi.vendor_id,
+          link_start_point: pi.link_start_point,
+          link_end_point: pi.link_end_point,
+          link_desctiprion: pi.link_desctiprion,
+          Link_start_date: pi.Link_start_date,
+          Link_complete_date: pi.Link_complete_date,
+          link_vendor_length: pi.link_vendor_length,
+          link_offical_length: pi.link_offical_length,
+          link_official_billing_start_d : pi.link_official_billing_start_d,
+          link_vendor_billing_start_d : pi.link_vendor_billing_start_d,
+          link_comment:pi.link_comment, 
         }
         
     });
@@ -70,19 +76,24 @@ export class LinkdashboardComponent implements OnInit {
 
 
 
-
   ngOnInit(): void  {
     this._LinkService.read_link().subscribe(data => {
       this.project_data = data.map(e => {
         return {
-          project_uid: e.payload.doc.id,
+          link_uid: e.payload.doc.id,
           project_id: e.payload.doc.data()['project_id'],
-          project_name: e.payload.doc.data()['project_name'],
-          project_location: e.payload.doc.data()['project_location'],
-          project_description: e.payload.doc.data()['project_description'],
-          project_status: e.payload.doc.data()['project_status'],
-          project_start_d: e.payload.doc.data()['project_start_d'],
-          project_end_d: e.payload.doc.data()['project_end_d'],
+          link_id: e.payload.doc.data()['link_id'],
+          vendor_id : e.payload.doc.data()['vendor_id'],
+          link_start_point: e.payload.doc.data()['link_start_point'],
+          link_end_point: e.payload.doc.data()['link_end_point'],
+          link_desctiprion: e.payload.doc.data()['link_desctiprion'],
+          Link_start_date: e.payload.doc.data()['Link_start_date'],
+          Link_complete_date: e.payload.doc.data()['Link_complete_date'],
+          link_vendor_length: e.payload.doc.data()['link_vendor_length'],
+          link_offical_length: e.payload.doc.data()['link_offical_length'],
+          link_official_billing_start_d : e.payload.doc.data()['link_official_billing_start_d'],
+          link_vendor_billing_start_d : e.payload.doc.data()['link_vendor_billing_start_d'],
+          link_comment:e.payload.doc.data()['link_comment'],
         };
       })
       this.dataSource = new MatTableDataSource(this.project_data);

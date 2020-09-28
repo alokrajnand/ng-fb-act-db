@@ -21,12 +21,16 @@ read_project() {
     return this._AngularFirestore.collection('projects').snapshotChanges();
   }
 
+read_project_byid(recordID) {
+    return this._AngularFirestore.doc('projects/' + recordID).snapshotChanges();
+  }
+
 update_Project(recordID,record){
     return this._AngularFirestore.doc('projects/' + recordID).update(record);
   }
 
 delete_Project(record_id) {
-    this._AngularFirestore.doc('projects/' + record_id).delete();
+    return this._AngularFirestore.doc('projects/' + record_id).delete();
   }
 
 }

@@ -28,4 +28,8 @@ delete_link(record_id) {
     this._AngularFirestore.doc('projects/' + record_id).delete();
   }
 
+read_link_by_pid(project_id) {
+    return this._AngularFirestore.collection("links", res => res.where('project_id', '==', project_id)).snapshotChanges()
+  }
+
 }
