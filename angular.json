@@ -29,7 +29,8 @@
                "@firebase/firestore",
                "@firebase/functions",
                "@firebase/performance",
-               "@firebase/remote-config"
+               "@firebase/remote-config",
+               "@angular/fire/firestore"
              ],
             "outputPath": "dist/myapp",
             "index": "src/index.html",

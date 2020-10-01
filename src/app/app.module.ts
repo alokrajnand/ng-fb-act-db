@@ -17,6 +17,7 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { ProjectdetailComponent } from './pages/project/projectdetail/projectdetail.component';
 import { LinkdetailComponent } from './pages/link/linkdetail/linkdetail.component';
 import { VendordetailComponent } from './pages/vendor/vendordetail/vendordetail.component';
+import { ProfileComponent } from './pages/profile/profile.component';
 
 
 
@@ -24,7 +25,7 @@ import { VendordetailComponent } from './pages/vendor/vendordetail/vendordetail.
 
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, ProfileComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

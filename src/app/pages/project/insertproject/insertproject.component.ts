@@ -4,6 +4,9 @@ import { ProjectService } from 'src/app/_services/project.service';
 import { ProjectModel } from 'src/app/_models/project.model';
 import { toTypeScript } from '@angular/compiler';
 import { OtherService } from 'src/app/_services/others.service';
+import { MatDialog } from '@angular/material/dialog';
+import { MessageService } from 'src/app/_services/message.service';
+import { delay } from 'rxjs/operators';
 
 
 interface Status {
@@ -30,7 +33,9 @@ company_data : any =  "";
   constructor(
   private _FormBuilder: FormBuilder,
   public _ProjectService: ProjectService,
-  public _OtherService : OtherService
+  public _OtherService : OtherService,
+  public dialog: MatDialog,
+  private _MessageService : MessageService
   ) {}
 
 projectstatus: Status[] = [
@@ -151,6 +156,8 @@ projectstatus: Status[] = [
     record['project_end_d'] = this.project_end_d.value;
     this._ProjectService.create_Project(record).then(resp => {
       console.log(resp);
+      this._MessageService.openSnackBar('Project Created :)')
+      this.dialog.closeAll();
     })
       .catch(error => {
         console.log(error);

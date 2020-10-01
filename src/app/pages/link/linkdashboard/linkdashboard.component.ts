@@ -16,7 +16,7 @@ import { InserlinkComponent } from '../inserlink/inserlink.component';
 })
 export class LinkdashboardComponent implements OnInit {
 
-  project_data: any;
+  link_data: any;
 
 
   displayedColumns: string[] = [ 'link_id','project_id', 'link_start_point', 'link_end_point', 'actions'];
@@ -78,7 +78,7 @@ export class LinkdashboardComponent implements OnInit {
 
   ngOnInit(): void  {
     this._LinkService.read_link().subscribe(data => {
-      this.project_data = data.map(e => {
+      this.link_data = data.map(e => {
         return {
           link_uid: e.payload.doc.id,
           project_id: e.payload.doc.data()['project_id'],
@@ -96,10 +96,10 @@ export class LinkdashboardComponent implements OnInit {
           link_comment:e.payload.doc.data()['link_comment'],
         };
       })
-      this.dataSource = new MatTableDataSource(this.project_data);
+      this.dataSource = new MatTableDataSource(this.link_data);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
-      console.log(this.project_data);
+      console.log(this.link_data);
 
     });
   }

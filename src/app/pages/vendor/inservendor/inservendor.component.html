@@ -1,4 +1,4 @@
-<h2 mat-dialog-title>Install Angular</h2>
+<h2 mat-dialog-title>Insert Vendor</h2>
 <mat-dialog-content class="mat-typography">
        <form class=""  [formGroup]="insertVendorForm"  >
             <mat-form-field class="example-full-width" appearance="outline">
@@ -9,10 +9,14 @@
 
             <mat-form-field class="example-full-width" appearance="outline">
               <mat-label>Vendor Name</mat-label>
-              <input matInput placeholder="Vendor Name" value="Vendor Name" formControlName="vendor_name" required>
-              
+              <input matInput placeholder="Vendor Name" value="Vendor Name" formControlName="vendor_name" required>             
             </mat-form-field>
  
+
+            <mat-form-field class="example-full-width" appearance="outline">
+              <mat-label>Vendor Address</mat-label>
+              <input matInput placeholder="Vendor Address" value="Vendor Address " formControlName="vendor_address" required>
+            </mat-form-field>
 
             <mat-form-field class="example-full-width" appearance="outline">
               <mat-label>Vendor City</mat-label>

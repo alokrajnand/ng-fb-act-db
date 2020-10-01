@@ -1,6 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { ProjectModel } from '../_models/project.model';
 import {HttpClient} from "@angular/common/http";
 import { AngularFirestore } from '@angular/fire/firestore';
 @Injectable({

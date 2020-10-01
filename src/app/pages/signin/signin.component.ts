@@ -17,7 +17,9 @@ signInForm: FormGroup;
 user: UserAuthModel = new UserAuthModel();
 
   constructor(private _FormBuilder: FormBuilder,
-  public _AuthService: AuthService) { }
+  public _AuthService: AuthService) { 
+
+  }
 
  ngOnInit(): void {
     //this is required for the form group

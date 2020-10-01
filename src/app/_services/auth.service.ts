@@ -12,21 +12,26 @@ import { map } from 'rxjs/operators';
 })
 export class AuthService {
 userData: any;  
-students :any;
+user_email :String;
+user_role : String;
 uid : String;
   constructor(
     private _Router: Router,
     public _AngularFirestore: AngularFirestore, // Inject Firestore service
     public _AngularFireAuth: AngularFireAuth, // Inject Firebase auth service
     public _NgZone: NgZone 
-  ) {
-
-  }
+  ) {}
 
   // Returns true when user is looged in and email is verified
-  isLoggedIn(): boolean {
-    return !!localStorage.getItem("user");
+  isLoggedIn(): boolean { 
+  return !! localStorage.getItem('user_uid');
+    
   }
+
+
+
+
+
 
  // Sign up with email/password
   SignUp(email, password) {
@@ -62,14 +67,11 @@ uid : String;
                 this._AngularFirestore.collection("roles", res => res.where('email', '==', result.user.email ))
                   .snapshotChanges().pipe(map(list => {
                       return list.map(item => {
-                          var role = item.payload.doc.data()['role'];  
-                            localStorage.setItem('user', JSON.stringify(
-                                          { 
-                                            "uid":result.user.uid,
-                                            "email":result.user.email,
-                                            "emailVerified":result.user.emailVerified,
-                                            "role":role,         
-                                        }));
+                          var role = item.payload.doc.data()['role']; 
+                          if (role == 'user') {
+                              window.alert('please talk to admin for your role')
+                          } else                       
+                            localStorage.setItem('user_uid', result.user.tenantId);
                           })
                       })).subscribe(data => {
                         this._Router.navigate(['pdashboard']);
@@ -94,21 +96,6 @@ sendEmailVerification() {
 }
 
 
-  /* Setting up user data when sign in with username/password, 
-  sign up with username/password and sign in with social auth  
-  provider in Firestore database using AngularFirestore + AngularFirestoreDocument service */
-  SetUserData(user) {
-    const userRef: AngularFirestoreDocument<any> = this._AngularFirestore.doc(`users/${user.uid}`);
-    const userData: User = {
-      uid: user.uid,
-      email: user.email,
-      emailVerified: user.emailVerified
-    }
-    return userRef.set(userData, {
-      merge: true
-    })
-  }
-
   getuser() { 
   var user = firebase.auth().currentUser; 
    this.userData = {  
@@ -116,6 +103,7 @@ sendEmailVerification() {
       email: user.email,
       emailVerified: user.emailVerified
    }  
+   console.log(this.userData)
    return this.userData;  
  }  
 
@@ -123,8 +111,8 @@ sendEmailVerification() {
   // Sign out 
   SignOut() {
     return this._AngularFireAuth.signOut().then(() => {
-      localStorage.removeItem('user');
-      this._Router.navigate(['home']);
+      localStorage.clear();
+      this._Router.navigate(['']);
     })
   }
 
@@ -137,6 +125,10 @@ sendEmailVerification() {
       window.alert(error)
     })
   }
+
+
+
+
 
 
 } 

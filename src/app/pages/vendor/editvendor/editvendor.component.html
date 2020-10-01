@@ -1,1 +1,54 @@
-<p>editvendor works!</p>
+<h2 mat-dialog-title>Update Vendor</h2>
+<mat-dialog-content class="mat-typography">
+       <form class=""  [formGroup]="editVendorForm"  >
+            <mat-form-field class="example-full-width" appearance="outline">
+              <mat-label>Vendor ID</mat-label>
+              <input matInput placeholder="Vendor Id" value="Vendor Id" formControlName="vendor_id" required>
+            
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width" appearance="outline">
+              <mat-label>Vendor Name</mat-label>
+              <input matInput placeholder="Vendor Name" value="Vendor Name" formControlName="vendor_name" required>             
+            </mat-form-field>
+ 
+
+            <mat-form-field class="example-full-width" appearance="outline">
+              <mat-label>Vendor Address</mat-label>
+              <input matInput placeholder="Vendor Address" value="Vendor Address " formControlName="vendor_address" required>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width" appearance="outline">
+              <mat-label>Vendor City</mat-label>
+              <input matInput placeholder="Vendor City" value="Vendor City" formControlName="vendor_city" required>
+            
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width" appearance="outline">
+              <mat-label>Vendor State</mat-label>
+              <input matInput placeholder="Vendor State" value="Vendor State" formControlName="vendor_state" required>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width" appearance="outline">
+              <mat-label>Vendor Pincode</mat-label>
+              <input matInput placeholder="vendor Pincode" value="Vendor Pincode" formControlName="vendor_pincode" required>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width" appearance="outline">
+              <mat-label>Vendor Country</mat-label>
+              <input matInput placeholder="Vendor Country" value="Vendor Country " formControlName="vendor_country" required>
+            </mat-form-field>
+
+        </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button  mat-button color="accent" (click)="onSubmit()" [disabled]="editVendorForm.invalid" >Submit</button>        
+
+</mat-dialog-actions>
+
+
+
+
+
+

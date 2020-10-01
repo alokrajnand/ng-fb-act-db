@@ -14,14 +14,18 @@ import { ProjectService } from 'src/app/_services/project.service';
 })
 export class ProjectdetailComponent implements OnInit {
   project_data: any = '';
-  link_data : any;
+  link_data : any ='';
   name = "";
+  psd : Date;
+  ped : Date;
+
 
   constructor(
   private _ProjectService : ProjectService,
   private _ActivatedRoute: ActivatedRoute,
   private _LinkService : LinkService,
   ) { 
+
   }
 
   ngOnInit(): void {
@@ -30,13 +34,19 @@ export class ProjectdetailComponent implements OnInit {
       this._ProjectService.read_project_byid(this.name).subscribe(res => {
           console.log(res.payload.data());
           this.project_data = res.payload.data();
-
+          this.psd = this.project_data.project_start_d.toDate().toUTCString();
+          if (this.project_data.project_end_d != null){
+          this.ped = this.project_data.project_end_d.toDate().toUTCString();
+          }else{
+            this.ped = this.project_data.project_end_d
+          }
       this._LinkService.read_link_by_pid(this.project_data.project_id).subscribe(data => {
       this.link_data = data.map(e => {
         return  {
           link_uid: e.payload.doc.id,
           project_id: e.payload.doc.data()['project_id'],
           link_id: e.payload.doc.data()['link_id'],
+          
           
         };
       })

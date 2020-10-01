@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { LinkModel } from 'src/app/_models/link.model';
 import { ProjectModel } from 'src/app/_models/project.model';
 import { LinkService } from 'src/app/_services/link.service';
@@ -34,7 +35,8 @@ vendor_data : any = '';
   private _FormBuilder: FormBuilder,
   private _LinkService: LinkService,
   private _ProjectService : ProjectService,
-  private _VendorService : VendorService
+  private _VendorService : VendorService,
+  public dialog: MatDialog,
   ) {}
 
 assignedto: Assigento[] = [
@@ -170,6 +172,8 @@ onSubmit1() {
 
     this._LinkService.create_link(record).then(resp => {
       console.log(resp);
+      this.dialog.closeAll();
+      
     })
       .catch(error => {
         console.log(error);

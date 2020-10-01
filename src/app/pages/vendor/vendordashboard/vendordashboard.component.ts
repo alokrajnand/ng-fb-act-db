@@ -56,10 +56,11 @@ export class VendordashboardComponent implements OnInit {
           vendor_uid :  pi.vendor_uid,
           vendor_id : pi.vendor_id,
           vendor_name : pi.vendor_name,
-          vendor_city : pi.vendor_city,
-          vendor_state : pi.vendor_state,
-          vendor_pincode : pi.vendor_pincode,
-          vendor_country : pi.vendor_country,         
+          vendor_city : pi.Address.vendor_city,
+          vendor_state : pi.Address.vendor_state,
+          vendor_pincode : pi.Address.vendor_pincode,
+          vendor_country : pi.Address.vendor_country,
+          vendor_address : pi.Address.vendor_Address,           
         }
         
     });
@@ -81,7 +82,6 @@ export class VendordashboardComponent implements OnInit {
           vendor_id : e.payload.doc.data()['vendor_id'],
           vendor_name : e.payload.doc.data()['vendor_name'],
           Address : e.payload.doc.data()['Address'],
-
         };
       })
       this.dataSource = new MatTableDataSource(this.vendor_data);

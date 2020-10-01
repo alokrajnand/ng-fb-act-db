@@ -10,13 +10,43 @@
   </mat-toolbar-row>
 </mat-toolbar>
 <mat-tab-group mat-align-tabs="start" >
-  <mat-tab label="Project Detail">Content 1</mat-tab>
+  <mat-tab label="Project Detail">
+  <div>
+  <mat-card>
+  <ul>
+   <li> Project Id : {{project_data.project_id}}</li>
+   <li> Project Name : {{project_data.project_name}}</li>
+   <li> Project Location : {{project_data.project_location}}</li>
+   <li> Project Header : {{project_data.project_short_description}}</li>
+   <li> Project Description: {{project_data.project_description}}</li>
+   <li> Project Status: {{project_data.project_status}}</li>
+   <li> Project Estimated Cost : {{project_data.project_estimated_cost}}</li>
+   <li> Project Owner : {{project_data.project_owner}}</li>
+   <li> Project Manager : {{project_data.project_manager}}</li>
+   <li> Project Start date : {{psd}}</li>
+   <li> Project End Date : {{ped}}</li>
+   </ul>
+  </mat-card>
+  </div>
+  </mat-tab>
   <mat-tab label="Link">
-  
-    <div *ngFor="let item of link_data">
-            {{item.link_uid}}
 
+<div class="card-container">
+<div class="card-box">
+    <div *ngFor="let item of link_data">
+        <mat-card class="list-card">
+          <mat-card-title class="card-title">{{item.link_uid}}</mat-card-title>
+          <mat-card-subtitle>Author - </mat-card-subtitle>
+          <mat-card-content>
+          <p>test</p>
+          </mat-card-content>
+        </mat-card>
     </div>
+</div>
+</div>
+
+
+
 
   
   </mat-tab>

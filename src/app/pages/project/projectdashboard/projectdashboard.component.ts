@@ -10,6 +10,9 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog} from '@angular/material/dialog';
 import { InsertprojectComponent } from '../insertproject/insertproject.component';
 import { EditprojectComponent } from '../editproject/editproject.component';
+import { AuthService } from 'src/app/_services/auth.service';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { UserService } from 'src/app/_services/user.service';
 
 
 
@@ -22,9 +25,12 @@ export class ProjectdashboardComponent implements OnInit  {
 title = 'Firestore CRUD Operations Students App';
 
   project_data: any;
-
-
-  displayedColumns: string[] = ['project_id', 'project_estimated_cost', 'project_manager', 'project_status', 'actions'];
+  role : any ;
+  user_data : any ='';
+  user_email : any ='';
+  displayedColumns: string[]; 
+  displayedColumns1: string[] = ['project_id', 'project_estimated_cost', 'project_manager', 'project_status', 'actions'];
+  displayedColumns2: string[] = ['project_id', 'project_estimated_cost', 'project_manager', 'project_status'];
   dataSource: MatTableDataSource<ProjectModel>;
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
@@ -34,8 +40,12 @@ title = 'Firestore CRUD Operations Students App';
   constructor( 
     private _AngularFirestore : AngularFirestore,
     private _ProjectService : ProjectService,
-    public dialog: MatDialog
+    private _AngularFireAuth : AngularFireAuth,
+    private _AuthService : AuthService,
+    public dialog: MatDialog,
+    private _UserService : UserService
   ) { 
+
   }
 
 
@@ -45,9 +55,7 @@ title = 'Firestore CRUD Operations Students App';
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      
-      
+      console.log('The dialog was closed');     
     });
   }
 
@@ -61,9 +69,13 @@ title = 'Firestore CRUD Operations Students App';
           project_name: pi.project_name,
           project_location: pi.project_location,
           project_description:pi.project_description,
+          project_short_description:pi.project_short_description,
+          project_estimated_cost:pi.project_estimated_cost,
+          project_owner:pi.project_owner,
+          project_manager:pi.project_manager,
           project_status: pi.project_status,
-          project_start_d: pi.project_start_d.toDate(),
-          project_end_d: pi.project_end_d.toDate(),       
+          project_start_d: pi.project_start_d,
+          project_end_d: pi.project_end_d,       
         }
         
     });
@@ -76,6 +88,25 @@ title = 'Firestore CRUD Operations Students App';
 
 
   ngOnInit(): void  {
+
+ 
+      this._AngularFireAuth.user.subscribe(res =>{
+        this.user_email = res.email 
+            this._UserService.getRole(this.user_email).subscribe(data => {
+            this.user_data = data.map(e => {      
+              this.role =  e.payload.doc.data()['role']
+              console.log(this.role)
+              if (this.role == 'admin'){
+                    this.displayedColumns = this.displayedColumns1
+                } else{
+                  this.displayedColumns = this.displayedColumns2
+                }
+            })
+          });
+      })
+    
+
+    ////////
     this._ProjectService.read_project().subscribe(data => {
       this.project_data = data.map(e => {
         return  {
@@ -99,9 +130,9 @@ title = 'Firestore CRUD Operations Students App';
       console.log(this.project_data);
 
     });
+
+
   }
-
-
 
 
   applyFilter(filterValue: string) {

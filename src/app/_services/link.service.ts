@@ -25,7 +25,7 @@ update_link(recordID,record){
   }
 
 delete_link(record_id) {
-    this._AngularFirestore.doc('projects/' + record_id).delete();
+    this._AngularFirestore.doc('links/' + record_id).delete();
   }
 
 read_link_by_pid(project_id) {

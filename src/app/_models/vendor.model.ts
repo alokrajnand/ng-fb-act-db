@@ -7,4 +7,5 @@ export class VendorModel {
     vendor_state : string;
     vendor_pincode : string;
     vendor_country : string;
+    vendor_address : String
 }
