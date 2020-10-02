@@ -40,7 +40,6 @@ user: UserAuthModel = new UserAuthModel();
   }
 
 onSubmit() {
-  console.log(this.username.value, this.password.value );
   this._AuthService.SignIn(this.username.value, this.password.value );
 }
 

@@ -83,7 +83,6 @@ selectedValue: string;
     };
 
     this._VendorService.create_vendor(record).then(resp => {
-      console.log(resp);
       this._MessageService.openSnackBar('Vendor Updated :)')
       this.dialog.closeAll();
     })

@@ -103,8 +103,6 @@ assignedto: Assigento[] = [
           vendor_name : e.payload.doc.data()['vendor_name'],
         };
       })
-      console.log(this.vendor_data);
-
     });
   
  /// to get project id from the the project collection
@@ -118,8 +116,6 @@ assignedto: Assigento[] = [
           project_name: e.payload.doc.data()['project_name'],
         };
       })
-      console.log(this.project_data);
-
     });
 
   
@@ -193,7 +189,6 @@ assignedto: Assigento[] = [
     record['link_comment'] = this.link_comment.value;
 
     this._LinkService.create_link(record).then(resp => {
-      console.log(resp);
       this.dialog.closeAll();
     })
       .catch(error => {

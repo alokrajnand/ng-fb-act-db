@@ -18,7 +18,6 @@ export class VerifyemailComponent implements OnInit {
 
   ngOnInit(): void {    
    this.user = this._AuthService.getuser()
-   console.log(this.user.email);
   }
 
 sendmail(){

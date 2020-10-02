@@ -91,7 +91,6 @@ export class VendordashboardComponent implements OnInit {
             this._UserService.getRole(this.user_email).subscribe(data => {
             this.user_data = data.map(e => {      
               this.role =  e.payload.doc.data()['role']
-              console.log(this.role)
               if (this.role == 'admin'){
                     this.displayedColumns = this.displayedColumns1
                 } else{
@@ -115,7 +114,6 @@ export class VendordashboardComponent implements OnInit {
       this.dataSource = new MatTableDataSource(this.vendor_data);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
-      console.log(this.vendor_data);
 
     });
   }

@@ -95,7 +95,6 @@ export class ProjectdashboardComponent implements OnInit  {
             this._UserService.getRole(this.user_email).subscribe(data => {
             this.user_data = data.map(e => {      
               this.role =  e.payload.doc.data()['role']
-              console.log(this.role)
               if (this.role == 'admin'){
                     this.displayedColumns = this.displayedColumns1
                 } else{
@@ -127,7 +126,6 @@ export class ProjectdashboardComponent implements OnInit  {
       this.dataSource = new MatTableDataSource(this.project_data);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
-      console.log(this.project_data);
 
     });
 
@@ -146,7 +144,6 @@ export class ProjectdashboardComponent implements OnInit  {
 
   RemoveRecord(rowID) {
     this._ProjectService.delete_Project(rowID).then(resp => {
-      console.log(resp);
     })
       .catch(error => {
         console.log(error);

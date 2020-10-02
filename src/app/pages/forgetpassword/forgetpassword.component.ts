@@ -31,7 +31,6 @@ user: UserAuthModel = new UserAuthModel();
 
 
 onSubmit() {
-  console.log(this.email_address.value);
   this._AuthService.ForgotPassword(this.email_address.value);
 }
 

@@ -77,8 +77,6 @@ assignedto: Assigento[] = [
           vendor_name : e.payload.doc.data()['vendor_name'],
         };
       })
-      console.log(this.vendor_data);
-
     });
   
  /// to get project id from the the project collection
@@ -92,8 +90,6 @@ assignedto: Assigento[] = [
           project_name: e.payload.doc.data()['project_name'],
         };
       })
-      console.log(this.project_data);
-
     });
 
   
@@ -147,14 +143,6 @@ assignedto: Assigento[] = [
     return this.insertLinkForm.get("link_comment");
   }
 
-/*** Form Validation Ends Here */
-
-onSubmit1() {
-  console.log(this.project_id.value, this.link_id.value,
-  this.link_assigned_to.value, this.link_start_point.value ,
-  this.link_end_point.value );
-}
-
 
   onSubmit()  {
     let record = {};
@@ -174,9 +162,7 @@ onSubmit1() {
     record['link_comment'] = this.link_comment.value;
 
     this._LinkService.create_link(record).then(resp => {
-      console.log(resp);
-      this.dialog.closeAll();
-      
+      this.dialog.closeAll();    
     })
       .catch(error => {
         console.log(error);

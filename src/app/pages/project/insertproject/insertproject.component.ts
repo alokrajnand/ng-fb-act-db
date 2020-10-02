@@ -72,8 +72,6 @@ projectstatus: Status[] = [
           emp_name: e.payload.doc.data()['emp_name'],
         };
       })
-      console.log(this.employee_data);
-
     });
   
 
@@ -87,7 +85,6 @@ projectstatus: Status[] = [
           comp_short_name: e.payload.doc.data()['company_short_name'],
         };
       })
-      console.log(this.company_data);
 
     });
   
@@ -155,7 +152,6 @@ projectstatus: Status[] = [
     record['project_start_d'] = this.project_start_d.value;
     record['project_end_d'] = this.project_end_d.value;
     this._ProjectService.create_Project(record).then(resp => {
-      console.log(resp);
       this._MessageService.openSnackBar('Project Created :)')
       this.dialog.closeAll();
     })

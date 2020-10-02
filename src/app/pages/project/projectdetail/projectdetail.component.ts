@@ -27,9 +27,7 @@ export class ProjectdetailComponent implements OnInit {
   private _ActivatedRoute: ActivatedRoute,
   private _LinkService : LinkService,
   private _AngularFireAuth : AngularFireAuth,
-  ) { 
-    console.log(this.isnull)
-  }
+  ) { }
 
   ngOnInit(): void {
       this.name = this._ActivatedRoute.snapshot.params.name;
@@ -45,7 +43,6 @@ export class ProjectdetailComponent implements OnInit {
       this.link_data = data.map(e => {
         var  losd  = e.payload.doc.data()['link_official_billing_start_d'];
         var  lvsd  = e.payload.doc.data()['link_vendor_billing_start_d'];
-        console.log(losd-lvsd)
         if (lvsd == null && losd != null ){var link_status = 'Green'} 
         else if (lvsd == null && losd == null ){var link_status = 'Green'} 
         else if (lvsd != null && losd == null ){var link_status = 'Red'} 

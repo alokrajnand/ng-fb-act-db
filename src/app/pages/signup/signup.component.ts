@@ -45,7 +45,6 @@ export class SignupComponent implements OnInit {
 
   //function triggered on the click of submit button
   onSubmit() {
-    console.log(this.signUpForm.value);
    this._AuthService.SignUp(this.email_address.value , this.password.value)
   }
 }

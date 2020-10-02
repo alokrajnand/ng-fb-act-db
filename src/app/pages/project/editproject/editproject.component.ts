@@ -41,7 +41,6 @@ ped : Date;
   @Inject(MAT_DIALOG_DATA) public data: any,
   
   ) {
-    console.log(data);
     if (this.data.project_end_d == null){
         this.ped = this.data.project_end_d ;
     } else{
@@ -84,8 +83,6 @@ projectstatus: Status[] = [
           emp_name: e.payload.doc.data()['emp_name'],
         };
       })
-      console.log(this.employee_data);
-
     });
   
 
@@ -99,8 +96,6 @@ projectstatus: Status[] = [
           comp_short_name: e.payload.doc.data()['company_short_name'],
         };
       })
-      console.log(this.company_data);
-
     });
 
 
@@ -150,13 +145,6 @@ projectstatus: Status[] = [
 
 /*** Form Validation Ends Here */
 
-onSubmit1() {
-  console.log(this.project_id.value, this.project_name.value,
-  this.project_location.value, this.project_description.value ,
-  this.project_status.value, this.project_start_d.value, this.project_end_d.value,  );
-}
-
-
   onSubmit()  {
     let record = {};
     record['project_id'] = this.project_id.value;
@@ -171,7 +159,6 @@ onSubmit1() {
     record['project_start_d'] = this.project_start_d.value;
     record['project_end_d'] = this.project_end_d.value;
     this._ProjectService.update_Project(this.data.project_uid,record).then(resp => {
-      console.log('resp');
       this._MessageService.openSnackBar('Project Updated :)') 
       this.dialog.closeAll();
     })

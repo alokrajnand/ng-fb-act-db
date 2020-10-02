@@ -50,8 +50,7 @@ export class LinkdashboardComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
-      
-      
+          
     });
   }
 
@@ -93,7 +92,6 @@ export class LinkdashboardComponent implements OnInit {
             this._UserService.getRole(this.user_email).subscribe(data => {
             this.user_data = data.map(e => {      
               this.role =  e.payload.doc.data()['role']
-              console.log(this.role)
               if (this.role == 'admin'){
                     this.displayedColumns = this.displayedColumns1
                 } else{
@@ -126,7 +124,6 @@ export class LinkdashboardComponent implements OnInit {
       this.dataSource = new MatTableDataSource(this.link_data);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
-      console.log(this.link_data);
 
     });
   }
