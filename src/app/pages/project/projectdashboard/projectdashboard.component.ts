@@ -22,12 +22,12 @@ import { UserService } from 'src/app/_services/user.service';
   styleUrls: ['./projectdashboard.component.scss']
 })
 export class ProjectdashboardComponent implements OnInit  {
-title = 'Firestore CRUD Operations Students App';
+
 
   project_data: any;
   role : any ;
-  user_data : any ='';
-  user_email : any ='';
+  user_data : any = '';
+  user_email : any = '';
   displayedColumns: string[]; 
   displayedColumns1: string[] = ['project_id', 'project_estimated_cost', 'project_manager', 'project_status', 'actions'];
   displayedColumns2: string[] = ['project_id', 'project_estimated_cost', 'project_manager', 'project_status'];

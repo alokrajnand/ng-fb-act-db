@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
@@ -6,6 +7,8 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { LinkModel } from 'src/app/_models/link.model';
 import { LinkService } from 'src/app/_services/link.service';
+import { ProjectService } from 'src/app/_services/project.service';
+import { UserService } from 'src/app/_services/user.service';
 import { EditlinkComponent } from '../editlink/editlink.component';
 import { InserlinkComponent } from '../inserlink/inserlink.component';
 
@@ -17,9 +20,14 @@ import { InserlinkComponent } from '../inserlink/inserlink.component';
 export class LinkdashboardComponent implements OnInit {
 
   link_data: any;
+  role : any ;
+  user_data : any ='';
+  user_email : any ='';
 
 
-  displayedColumns: string[] = [ 'link_id','project_id', 'link_start_point', 'link_end_point', 'actions'];
+  displayedColumns: string[]; 
+  displayedColumns1: string[] = ['link_id', 'project_id','link_start_point', 'link_end_point', 'actions'];
+  displayedColumns2: string[] = ['link_id', 'project_id', 'link_start_point', 'link_end_point'];
   dataSource: MatTableDataSource<LinkModel>;
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
@@ -28,7 +36,9 @@ export class LinkdashboardComponent implements OnInit {
   constructor( 
     private _AngularFirestore : AngularFirestore,
     private _LinkService : LinkService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private _AngularFireAuth : AngularFireAuth,
+    private _UserService : UserService
   ) { 
   }
 
@@ -77,6 +87,23 @@ export class LinkdashboardComponent implements OnInit {
 
 
   ngOnInit(): void  {
+
+      this._AngularFireAuth.user.subscribe(res =>{
+        this.user_email = res.email 
+            this._UserService.getRole(this.user_email).subscribe(data => {
+            this.user_data = data.map(e => {      
+              this.role =  e.payload.doc.data()['role']
+              console.log(this.role)
+              if (this.role == 'admin'){
+                    this.displayedColumns = this.displayedColumns1
+                } else{
+                  this.displayedColumns = this.displayedColumns2
+                }
+            })
+          });
+      })
+
+    ////
     this._LinkService.read_link().subscribe(data => {
       this.link_data = data.map(e => {
         return {

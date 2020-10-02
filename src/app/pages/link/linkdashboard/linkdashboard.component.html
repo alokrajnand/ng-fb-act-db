@@ -4,7 +4,7 @@
     <div fxFlex fxLayout="row" fxLayoutAlign="flex-end">
       <ul fxLayout="row" fxLayoutGap="20px">
         <div class="header-button">
-          <button mat-stroked-button  routerLinkActive="list-item-active" (click)=" openInsertprojectDialog()">
+          <button *ngIf="role=='admin'" mat-stroked-button  routerLinkActive="list-item-active" (click)=" openInsertprojectDialog()">
           <mat-icon>add</mat-icon> Link
         
           </button>
@@ -14,7 +14,7 @@
   </mat-toolbar-row>
 </mat-toolbar>
 
-<!-- Dashboard card -->
+<!-- Dashboard card 
 
       <div class="db-container">
           <div class="home-row" fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="10px">
@@ -44,7 +44,7 @@
               </mat-card>
           </div>
       </div>
-
+-->
 
 <!--- Project Table -->
 

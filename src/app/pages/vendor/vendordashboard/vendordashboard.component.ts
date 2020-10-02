@@ -1,11 +1,14 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { VendorModel } from 'src/app/_models/vendor.model';
+import { AuthService } from 'src/app/_services/auth.service';
 import { ProjectService } from 'src/app/_services/project.service';
+import { UserService } from 'src/app/_services/user.service';
 import { VendorService } from 'src/app/_services/vendor.service';
 import { EditvendorComponent } from '../editvendor/editvendor.component';
 import { InservendorComponent } from '../inservendor/inservendor.component';
@@ -19,9 +22,13 @@ export class VendordashboardComponent implements OnInit {
 
  
   vendor_data: any;
+  role : any ;
+  user_data : any ='';
+  user_email : any ='';
 
-
-  displayedColumns: string[] = ['vendor_id', 'vendor_name', 'vendor_city', 'vendor_state', 'actions'];
+  displayedColumns: string[]; 
+  displayedColumns1: string[] = ['vendor_id', 'vendor_name', 'vendor_city', 'vendor_state', 'actions'];
+  displayedColumns2: string[] = ['vendor_id', 'vendor_name', 'vendor_city', 'vendor_state'];
   dataSource: MatTableDataSource<VendorModel>;
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
@@ -30,7 +37,10 @@ export class VendordashboardComponent implements OnInit {
   constructor( 
     private _AngularFirestore : AngularFirestore,
     private _VendortService : VendorService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private _AngularFireAuth : AngularFireAuth,
+    private _AuthService : AuthService,
+    private _UserService : UserService
   ) { 
   }
 
@@ -75,6 +85,24 @@ export class VendordashboardComponent implements OnInit {
 
 
   ngOnInit(): void  {
+
+      this._AngularFireAuth.user.subscribe(res =>{
+        this.user_email = res.email 
+            this._UserService.getRole(this.user_email).subscribe(data => {
+            this.user_data = data.map(e => {      
+              this.role =  e.payload.doc.data()['role']
+              console.log(this.role)
+              if (this.role == 'admin'){
+                    this.displayedColumns = this.displayedColumns1
+                } else{
+                  this.displayedColumns = this.displayedColumns2
+                }
+            })
+          });
+      })
+
+
+ /////   
     this._VendortService.read_vendor().subscribe(data => {
       this.vendor_data = data.map(e => {
         return  {

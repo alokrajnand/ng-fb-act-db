@@ -25,6 +25,11 @@ update_vendor(recordID,record){
     return this._AngularFirestore.doc('vendors/' + recordID).update(record);
   }
 
+vendor_byid(recordID){
+    return this._AngularFirestore.doc('vendors/' + recordID).snapshotChanges();
+
+  }
+
 delete_vendor(record_id) {
     this._AngularFirestore.doc('vendors/' + record_id).delete();
   }

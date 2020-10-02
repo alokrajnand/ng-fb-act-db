@@ -37,7 +37,10 @@ vendor_data : any = '';
   private _ProjectService : ProjectService,
   private _VendorService : VendorService,
   public dialog: MatDialog,
-  ) {}
+  ) {
+
+    
+  }
 
 assignedto: Assigento[] = [
     {value: 'Self', viewValue: 'Self'},
@@ -157,7 +160,7 @@ onSubmit1() {
     let record = {};
     record['project_id'] = this.project_id.value;
     record['link_id'] = this.link_id.value;
-    record['vendor_id'] = this.link_id.value;
+    record['vendor_id'] = this.vendor_id.value;
     record['link_assigned_to'] = this.link_assigned_to.value;
     record['link_start_point'] = this.link_start_point.value;
     record['link_end_point'] = this.link_end_point.value;

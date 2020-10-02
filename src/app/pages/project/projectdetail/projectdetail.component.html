@@ -32,20 +32,53 @@
   <mat-tab label="Link">
 
 <div class="card-container">
-<div class="card-box">
-    <div *ngFor="let item of link_data">
-        <mat-card class="list-card">
-          <mat-card-title class="card-title">{{item.link_uid}}</mat-card-title>
-          <mat-card-subtitle>Author - </mat-card-subtitle>
-          <mat-card-content>
-          <p>test</p>
-          </mat-card-content>
-        </mat-card>
-    </div>
-</div>
+<div class="content" fxLayout="row wrap" fxLayoutGap="5px grid">
+  <div fxFlex="25%" *ngFor="let link of link_data">
+    <mat-card class="mat-elevation-z4" >
+      <mat-card-content>
+      
+      <div fxLayout="row" fxLayoutAlign="space-between start">     
+        <div fxLayout="column">
+          <div class="link-card-header">{{link.link_id}}</div>
+          <div fxLayout="row" class ="link-card-route">
+          {{link.link_start_point}}<p>&nbsp; -- &nbsp;</p>{{link.link_end_point}}
+          </div>         
+        </div>
+        <div class="link-card-status">{{link.link_status}}</div>
+      </div>
+
+      <mat-divider></mat-divider>
+      <div class="link-card-content">
+        <div fxLayout="row" fxLayoutAlign="space-between start" >
+        <p> Vendor ID : </p>
+        <p>{{link.vendor_id}}</p>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="space-between start">
+        <p> Vendor Link Length : </p>    
+        <p>{{link.link_vendor_length}}</p>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="space-between start">
+        <p> Offical Link Length : </p>    
+        <p>{{link.link_offical_length}}</p>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="space-between start">
+        <p> Offical Billing Start date : </p>       
+        <p>{{link.link_official_billing_start_d.seconds * 1000 | date: 'MM/dd/yyyy' }}</p>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="space-between start">
+            <p> Vendor Billing Start date  : </p>  
+            <div *ngIf="link.link_vendor_billing_start_d != null; then thenBlock else elseBlock"></div>
+            <ng-template #thenBlock><p>{{link.link_vendor_billing_start_d.seconds * 1000 | date: 'MM/dd/yyyy' }}</p></ng-template>
+            <ng-template #elseBlock><p> No value</p></ng-template>
+        </div>
+
+      </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
 </div>
 
-
+</div>
 
 
   
