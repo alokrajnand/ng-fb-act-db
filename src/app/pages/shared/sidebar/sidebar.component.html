@@ -3,22 +3,28 @@
 <mat-card class="user-card">
     <img class="user-mat-card-avatar"  src="/assets/logo/Actoss-logo-600.png">
     <div class="user-card">             
-        <mat-card-title class="user-card-title">Actoss</mat-card-title>
+        <mat-card-title class="user-card-title">Actoss Technology Pvt Lmt.</mat-card-title>
     </div>
 </mat-card>
 
-
-
-<div class="sidenav-heading" >Navbar</div>
 <mat-nav-list class="side-nav">
         <a mat-list-item routerLinkActive="list-item-active" routerLink=""> <i class="material-icons">home</i>Home</a>
+        <a mat-list-item routerLinkActive="list-item-active" routerLink="about"> <i class="material-icons">corporate_fare</i>Company Profile</a>
+        <a mat-list-item routerLinkActive="list-item-active" routerLink="services"> <i class="material-icons">design_services</i>Our Services</a>
+        <a mat-list-item routerLinkActive="list-item-active" routerLink="products"> <i class="material-icons">inventory_2</i>Our Product</a>
+        <a mat-list-item routerLinkActive="list-item-active" routerLink="partner"> <i class="material-icons">group_work</i>Partner</a>
+        <a mat-list-item routerLinkActive="list-item-active" routerLink="client"> <i class="material-icons">business</i>Client</a>
+        <a mat-list-item routerLinkActive="list-item-active" routerLink="contact"> <i class="material-icons">contact_mail</i>Contact Us</a>
+
+
 </mat-nav-list>
-<mat-divider></mat-divider>
+
+<div *ngIf="_AuthService.isLoggedIn()">
 <div class="sidenav-heading">Dashboard</div>
 <mat-nav-list class="side-nav">   
     <a mat-list-item routerLinkActive="list-item-active" routerLink="pdashboard"><i class="material-icons">dashboard</i>Project Dashboard</a>
     <a mat-list-item routerLinkActive="list-item-active" routerLink="ldashboard" ><i class="material-icons">dashboard</i>Link Dashboard</a>
-        <a mat-list-item routerLinkActive="list-item-active" routerLink="vdashboard" ><i class="material-icons">dashboard</i>Vendor Dashboard</a>
+   <a mat-list-item routerLinkActive="list-item-active" routerLink="vdashboard" ><i class="material-icons">dashboard</i>Vendor Dashboard</a>
 </mat-nav-list>
-
+</div>
 </div>

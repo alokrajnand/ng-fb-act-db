@@ -71,6 +71,12 @@ import {MatTableModule} from '@angular/material/table';
 
 import { GoogleMapsModule } from "@angular/google-maps";
 import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { CompanyProfileComponent } from "../pages/company-profile/company-profile.component";
+import { ClientComponent } from "../pages/client/client.component";
+import { ContactUsComponent } from "../pages/contact-us/contact-us.component";
+import { PartnerComponent } from "../pages/partner/partner.component";
+import { ProductComponent } from "../pages/product/product.component";
+import { ServicesComponent } from "../pages/services/services.component";
 
 
 
@@ -85,7 +91,13 @@ import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform
     SignupComponent,
     SigninComponent,
     HomeComponent,
-    DashboardComponent, 
+    ServicesComponent,
+    DashboardComponent,
+    CompanyProfileComponent,
+    ClientComponent,
+    ContactUsComponent,
+    PartnerComponent,
+    ProductComponent,
     VerifyemailComponent,
     ForgetpasswordComponent,
     ProjectdashboardComponent,

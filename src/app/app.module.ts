@@ -18,6 +18,12 @@ import { ProjectdetailComponent } from './pages/project/projectdetail/projectdet
 import { LinkdetailComponent } from './pages/link/linkdetail/linkdetail.component';
 import { VendordetailComponent } from './pages/vendor/vendordetail/vendordetail.component';
 import { ProfileComponent } from './pages/profile/profile.component';
+import { ProductComponent } from './pages/product/product.component';
+import { CompanyProfileComponent } from './pages/company-profile/company-profile.component';
+import { ServicesComponent } from './pages/services/services.component';
+import { PartnerComponent } from './pages/partner/partner.component';
+import { ClientComponent } from './pages/client/client.component';
+import { ContactUsComponent } from './pages/contact-us/contact-us.component';
 
 
 
@@ -25,7 +31,7 @@ import { ProfileComponent } from './pages/profile/profile.component';
 
 
 @NgModule({
-  declarations: [AppComponent, ProfileComponent],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
